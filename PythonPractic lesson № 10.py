@@ -1,3 +1,5 @@
+# ЗАДАНИЕ 1
+
 import sys
 pets = dict()
 n = 100  # количество операций
@@ -42,3 +44,11 @@ for i in range(n):
         sys.exit('Завершение программы')
     else:
         print('Неверная команда! Введите add, info или exit!')
+
+
+# ЗАДАНИЕ 2
+
+# s = {}
+# for i in range(10, -6, -1):
+#     s[i] = pow(i, i)
+# print(s)
