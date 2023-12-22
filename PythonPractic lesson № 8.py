@@ -41,12 +41,18 @@ n = int(input())
 s = [int(input(f'Введите вес рыбака {i + 1}: ')) for i in range(n)]
 s.sort(reverse=True)
 lodki = 0
-
+i = 0
+j = len(s) - 1
 if m >= 1 and m <= 10000 and n >= 1 and n <= 100 :
-    for i in s:
+    while i <= j:
         if s[i] >= 1 and s[i] <= m :
-            if (s[i] + s[i - 1]) <= m :
-                s.pop()
+            if s[i] == m:
+                i += 1
+            elif s[i] < m:
+                if (s[i] + s[j]) <= m :
+                    s.pop()
+                    i +=1
+                    j -= 1
             lodki +=1
         else:
             print('Ошибка! Введены некорректные значения веса рыбаков!')   
