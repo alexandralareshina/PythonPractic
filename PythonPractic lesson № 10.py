@@ -33,6 +33,8 @@ for i in range(n):
                 # адаптация год, года или лет для возраста
                 if (a % 10) == 1 :
                     ag = str(a) + ' год'
+                elif a >= 10 and a <= 20:
+                    ag = str(a) + ' лет'
                 elif (a % 10) > 1 and a % 10 < 5 :
                     ag = str(a) + ' года'
                 else:
