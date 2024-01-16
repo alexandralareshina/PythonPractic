@@ -87,16 +87,16 @@ def update():
         print('Введите id питомца для изменения информации: ')
         kl = int(input())
         if kl in pets.keys():
+            del pets[kl]
             print('Введите новые данные o питомце:')
             name = input('Имя питомца: ')
             vid = input('Вид питомца: ')
             age = int(input('Возраст питомца: '))
             vlad = input('Имя владельца: ')
-            if name in pets[kl].keys() :
-                pets[kl] |= { name : {'Вид питомца': vid, 'Возраст питомца': age, 'Имя владельца': vlad}}
-                print(f'Данные питомца {name} изменены!')
-            else:
-                print('Такого питомца нет в базе!')
+            pets[kl] = {name :{'Вид питомца': vid, 'Возраст питомца': age, 'Имя владельца': vlad}} 
+            print(f'Данные питомца {kl} изменены!')
+        else:
+            print('Такого питомца нет в базе!')
 
 def delete():
     if len(pets) == 0:
