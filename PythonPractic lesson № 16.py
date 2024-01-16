@@ -41,55 +41,34 @@ class Cherepashka(object):
     
     def go_up(self):
         self.y += self.s
-        print(f'x = {self.x}, y = {self.y}, ход - {self.s}')
+        print(f'x = {self.x}, y = {self.y}, ход = {self.s}')
     def go_down(self):
         self.y -= self.s
-        print(f'x = {self.x}, y = {self.y}, ход - {self.s}')
+        print(f'x = {self.x}, y = {self.y}, ход = {self.s}')
     def go_left(self):
         self.x -= self.s
-        print(f'x = {self.x}, y = {self.y}, ход - {self.s}')
+        print(f'x = {self.x}, y = {self.y}, ход = {self.s}')
     def go_right(self):
         self.x += self.s
-        print(f'x = {self.x}, y = {self.y}, ход - {self.s}')
+        print(f'x = {self.x}, y = {self.y}, ход = {self.s}')
     def evolve(self):
         self.s +=1
-        print(f'x = {self.x}, y = {self.y}, ход - {self.s}')
+        print(f'x = {self.x}, y = {self.y}, ход = {self.s}')
     def degrade(self):
         if self.s == 1:
             print('Ошибка! количество клеток за 1 ход не может быть меньше 1!')
         else:
             self.s -= 1
             print(f'x = {self.x}, y = {self.y}, ход - {self.s}')
-    def count_moves(self):
-        while self.x < (self.x * 2) and (self.y < self.y):
-            self.cnt = 0
-            if self.s > self.x:
-                for i in range(self.s - self.x):
-                    self.s.degrade()
-                    self.cnt += 1
-            if self.s > self.y:
-                for i in range(self.s - self.y):
-                    self.s.degrade()
-                    self.cnt += 1
-            if self.s == self.x:
-                self.cnt += 1
-            if self.s == self.y:
-                self.cnt += 1
-            if self.s + self.x < self.x * 2:
-                self.x.go_right()
-                self.cnt += 1
-            if self.s + self.y < self.y * 2:
-                self.y.go_up()
-                self.cnt += 1
-            if self.s + self.x > self.x * 2:
-                for i in range((self.x * 2) - self.x):
-                    self.s.degrade()
-                    self.cnt += 1
-            if self.s + self.y > self.y * 2:
-                for i in range((self.y * 2) - self.y):
-                    self.s.degrade()
-                    self.cnt += 1
-        return print(f'Необходимо ходов - {self.cnt} ')
+
+    def count_moves(self, x2, y2):
+            res = (abs(self.x - x2) // self.s) + (abs(self.y - y2) // self.s)
+            if abs(self.x - x2) % self.s != 0:
+                res +=1
+            elif abs(self.y - y2) % self.s != 0:
+                res += 1
+            print(f"Что - бы добратся до точки {x}:{y} необходимо ходов - {res}")      
+
 
 
 game = Cherepashka()
@@ -110,7 +89,10 @@ for i in range(n):
     elif com == 'h-':
         game.degrade()
     elif com == 'count':
-        game.count_moves()
+        print('Введите координаты для черепашки: ')
+        x = int(input('x - '))
+        y = int(input('y - '))
+        game.count_moves(x, y)
     elif com == 'exit':
         sys.exit('Завершение программы')
     else:
